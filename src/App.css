@@ -55,16 +55,18 @@ a {
   .wordmark {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-decoration: none;
+  margin-right: auto;
+  flex-shrink: 0;
 }
 
 .wordmark img {
   display: block;
-  width: 110px;
-  height: auto;
-  max-height: 55px;
-  object-fit: contain;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 }
 
