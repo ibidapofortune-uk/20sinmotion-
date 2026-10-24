@@ -48,11 +48,6 @@ a {
 }
 
 .wordmark {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 23px;
-  letter-spacing: -2px;
-  .wordmark {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -67,7 +62,6 @@ a {
   height: 48px;
   object-fit: cover;
   border-radius: 50%;
-}
 }
 
 .topbar-note,
