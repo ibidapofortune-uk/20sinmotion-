@@ -8,7 +8,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-optical-sizing: auto;
   font-weight: 400;
   scroll-behavior: smooth;
 }
@@ -228,6 +227,7 @@ a {
     opacity: 0;
     transform: scale(1.035);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -388,6 +388,7 @@ a {
 }
 
 .preorder {
+  margin: 75px -7% -100px;
   padding: 80px 7%;
   background: #e8e3d8;
   text-align: center;
@@ -462,4 +463,150 @@ a {
 .footer > a {
   margin: 8px 0;
   font-size: 10px;
-  font-weight: 600
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+
+.footer > a:hover,
+.product-link:hover,
+.menu-link:hover {
+  opacity: 0.65;
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    padding: 17px 5%;
+    gap: 12px;
+  }
+
+  .wordmark img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .topbar-note {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .menu-link {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 115px 5% 35px;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .hero-copy {
+    padding: 20px 0 0;
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(44px, 12vw, 70px);
+  }
+
+  .visual-panel {
+    height: 60vh;
+    min-height: 330px;
+    max-height: 580px;
+  }
+
+  .hero-footer {
+    flex-wrap: wrap;
+    margin-top: 25px;
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .brand-statement {
+    padding: 80px 6%;
+  }
+
+  .brand-statement h2 {
+    font-size: clamp(37px, 10vw, 65px);
+    letter-spacing: -2px;
+  }
+
+  .collection {
+    padding: 75px 5%;
+  }
+
+  .section-heading {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .collection > h2 {
+    margin-top: 40px;
+  }
+
+  .product-placeholder {
+    min-height: 300px;
+  }
+
+  .product-info {
+    gap: 12px;
+  }
+
+  .product-info h3 {
+    font-size: 11px;
+  }
+
+  .product-link {
+    font-size: 9px;
+  }
+
+  .preorder {
+    margin: 60px -5% -75px;
+    padding: 65px 5%;
+  }
+
+  .collection-hero {
+    min-height: 70svh;
+    padding: 140px 5% 55px;
+  }
+
+  .collection-hero h1 {
+    font-size: clamp(50px, 13vw, 90px);
+    letter-spacing: -3px;
+  }
+
+  .footer {
+    padding: 55px 5% 30px;
+  }
+}
+
+@media (max-width: 380px) {
+  .topbar-note {
+    display: none;
+  }
+
+  .hero-copy h2 {
+    font-size: 42px;
+  }
+
+  .hero-footer {
+    flex-direction: column;
+  }
+
+  .product-info {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  }
