@@ -56,7 +56,7 @@ function HomePage() {
 
         <div className={`hero-content ${introFinished ? "hero-visible" : ""}`}>
           <div className="hero-copy">
-            <span className="eyebrow">COLLECTION 001 — LAGOS</span>
+            <span className="eyebrow">COLLECTION 001 — LAGOS, NIGERIA</span>
 
             <h2>
               BUILT FOR
