@@ -12,7 +12,9 @@ export default function App() {
   return (
     <main className="site">
       <header className="topbar">
-        <a className="wordmark" href="#home">20SIM</a>
+        <a className="wordmark" href="#home">
+  <img src="/IMG_9431.PNG" alt="20sinmotion logo" />
+</a>
         <span className="topbar-note">INDEPENDENT STREETWEAR</span>
         <a className="menu-link" href="#contact">CONTACT ↗</a>
       </header>
