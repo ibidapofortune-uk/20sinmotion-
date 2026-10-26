@@ -307,6 +307,24 @@ function CollectionPage() {
             BAG ({itemCount}) ↗
           </button>
         </div>
+        <button
+  type="button"
+  className="floating-cart-button"
+  onClick={() => {
+    setCartOpen(true);
+    setTimeout(() => {
+      document.getElementById("cart-panel")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 150);
+  }}
+  aria-label={`Open shopping bag with ${itemCount} items`}
+>
+  <span>YOUR BAG</span>
+  <span className="floating-cart-count">{itemCount}</span>
+  <span>↗</span>
+</button>
 
         <div className="product-grid">
           {PRODUCTS.map((product, index) => (
