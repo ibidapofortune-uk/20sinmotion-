@@ -385,7 +385,7 @@ function CollectionPage() {
         </div>
 
         {cartOpen && (
-          <section className="cart-panel" aria-label="Shopping bag">
+          <section id="cart-panel" className="cart-panel" aria-label="Shopping bag">
             <div className="section-heading">
               <span>YOUR BAG</span>
               <button
