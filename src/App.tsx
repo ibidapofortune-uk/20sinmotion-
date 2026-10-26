@@ -227,46 +227,79 @@ function CollectionPage() {
   }
 
   function continueToWhatsApp() {
-    if (!customerName.trim() || !customerPhone.trim()) {
-      window.alert("Please enter your name and phone number.");
-      return;
-    }
+  if (!customerName.trim() || !customerPhone.trim()) {
+    window.alert("Please enter your name and phone number.");
+    return;
+  }
 
-    if (fulfilment === "delivery" && !deliveryAddress.trim()) {
-      window.alert("Please enter your delivery address.");
-      return;
-    }
+  if (fulfilment === "delivery" && !deliveryAddress.trim()) {
+    window.alert("Please enter your delivery address.");
+    return;
+  }
 
-    const orderLines = cart.map((item) => {
-      const product = PRODUCTS.find((p) => p.id === item.productId);
-      return `${product?.name} — Size ${item.size} × ${item.quantity}`;
+  const orderLines = cart.map((item) => {
+    const product = PRODUCTS.find((p) => p.id === item.productId);
+    return `${product?.name} — Size ${item.size} × ${item.quantity}`;
+  });
+
+  const itemsText = orderLines.join("\n");
+  const totalText = formatPrice(total);
+
+  const message = [
+    "Hello 20sinmotion! I'd like to place an order.",
+    "",
+    `Name: ${customerName}`,
+    `Phone: ${customerPhone}`,
+    `Fulfilment: ${
+      fulfilment === "delivery"
+        ? "Delivery"
+        : "Pickup (arrange after ordering)"
+    }`,
+    ...(fulfilment === "delivery"
+      ? [`Delivery address: ${deliveryAddress}`]
+      : []),
+    "",
+    ...orderLines,
+    "",
+    `Items total: ${totalText}`,
+    "Please confirm delivery/pickup arrangements and the final amount.",
+    ...(orderNote.trim() ? [`Note: ${orderNote.trim()}`] : []),
+  ].join("\n");
+
+  const whatsappNumber = "2347031629769";
+
+  // Open WhatsApp immediately so the browser does not block it.
+  window.open(
+    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+    "_blank",
+    "noopener,noreferrer",
+  );
+
+  // Send the order details to the email notification backend.
+  void fetch("/api/order-notification", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: customerName.trim(),
+      phone: customerPhone.trim(),
+      fulfilment:
+        fulfilment === "delivery" ? "Delivery" : "Pickup",
+      address: fulfilment === "delivery" ? deliveryAddress.trim() : "",
+      items: itemsText,
+      total: totalText,
+      note: orderNote.trim(),
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Email notification failed");
+      }
+    })
+    .catch((error) => {
+      console.error("Order email notification failed:", error);
     });
-
-    const message = [
-      "Hello 20sinmotion! I'd like to place an order.",
-      "",
-      `Name: ${customerName}`,
-      `Phone: ${customerPhone}`,
-      `Fulfilment: ${fulfilment === "delivery" ? "Delivery" : "Pickup (arrange after ordering)"}`,
-      ...(fulfilment === "delivery"
-        ? [`Delivery address: ${deliveryAddress}`]
-        : []),
-      "",
-      ...orderLines,
-      "",
-      `Items total: ${formatPrice(total)}`,
-      "Please confirm delivery/pickup arrangements and the final amount.",
-      ...(orderNote.trim() ? [`Note: ${orderNote.trim()}`] : []),
-    ].join("\n");
-
-    // Replace 2348012345678 with your real WhatsApp number in international format.
-    const whatsappNumber = "2347031629769";
-
-    window.open(
-      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
   }
 
   return (
