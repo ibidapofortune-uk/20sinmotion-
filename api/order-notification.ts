@@ -10,11 +10,7 @@ export default async function handler(req: any, res: any) {
     return res.status(500).json({ error: "Server configuration missing" });
   }
 
- const suppliedSecret = req.body?.secret;
 
-  if (suppliedSecret !== expectedSecret) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
 
   const { name, phone, fulfilment, address, items, total, note } =
     req.body || {};
