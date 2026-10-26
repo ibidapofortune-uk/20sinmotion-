@@ -873,3 +873,57 @@ textarea:focus-visible {
     animation-duration: 0.01ms !important;
   }
   }
+/* FLOATING SHOPPING BAG */
+.floating-cart-button {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 20px;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--cream);
+  font-family: "DM Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(32, 30, 25, 0.12);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.floating-cart-button:hover {
+  background: var(--cream);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.floating-cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 10px;
+}
+
+@media (max-width: 760px) {
+  .floating-cart-button {
+    right: 14px;
+    bottom: 18px;
+    min-height: 48px;
+    padding: 0 15px;
+  }
+}
