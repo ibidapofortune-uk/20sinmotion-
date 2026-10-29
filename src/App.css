@@ -885,9 +885,9 @@ textarea:focus-visible {
   gap: 10px;
   min-height: 52px;
   padding: 0 20px;
-  border: 1px solid var(--ink);
-  background: var(--ink);
-  color: var(--cream);
+  border: 1px solid #c6a15b;
+background: #c6a15b;
+color: #201e19;
   font-family: "DM Sans", sans-serif;
   font-size: 10px;
   font-weight: 700;
