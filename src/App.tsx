@@ -48,6 +48,9 @@ function formatPrice(amount: number) {
 }
 
 function Header() {
+function Header() {
+  const isCollectionPage = window.location.pathname.startsWith("/collection");
+
   return (
     <header className="topbar">
       <a className="wordmark" href="/" aria-label="20sinmotion home">
@@ -56,9 +59,23 @@ function Header() {
 
       <span className="topbar-note">INDEPENDENT STREETWEAR</span>
 
-      <a className="menu-link" href="/collection">
-        SHOP ↗
-      </a>
+      <nav className="main-navigation" aria-label="Main navigation">
+        <a
+          className={`menu-link ${!isCollectionPage ? "active" : ""}`}
+          href="/"
+          aria-current={!isCollectionPage ? "page" : undefined}
+        >
+          HOME
+        </a>
+
+        <a
+          className={`menu-link ${isCollectionPage ? "active" : ""}`}
+          href="/collection"
+          aria-current={isCollectionPage ? "page" : undefined}
+        >
+          SHOP ↗
+        </a>
+      </nav>
     </header>
   );
 }
