@@ -901,8 +901,9 @@ color: #201e19;
 }
 
 .floating-cart-button:hover {
-  background: var(--cream);
-  color: var(--ink);
+  background: #d8b873;
+  border-color: #d8b873;
+  color: #201e19;
   transform: translateY(-2px);
 }
 
