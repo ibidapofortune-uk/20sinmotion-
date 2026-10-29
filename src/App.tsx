@@ -48,7 +48,6 @@ function formatPrice(amount: number) {
 }
 
 function Header() {
-function Header() {
   const isCollectionPage = window.location.pathname.startsWith("/collection");
 
   return (
@@ -650,4 +649,4 @@ export default function App() {
     window.location.pathname.replace(/\/+$/, "") === "/collection";
 
   return isCollectionPage ? <CollectionPage /> : <HomePage />;
-          }
+    }
