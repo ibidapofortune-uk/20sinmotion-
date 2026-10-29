@@ -884,9 +884,10 @@ textarea:focus-visible {
   }
 
   .product-grid {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+  
 
   .product-info h3 {
     font-size: 17px;
