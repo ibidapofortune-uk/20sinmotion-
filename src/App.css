@@ -131,16 +131,16 @@ textarea:focus-visible {
   text-align: center;
 }
 
+
 .main-navigation {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 24px;
 }
 
 .menu-link {
   position: relative;
-  border-bottom: none;
-  padding-bottom: 4px;
+  padding-bottom: 5px;
   white-space: nowrap;
   font-weight: 700;
   text-decoration: none;
@@ -162,7 +162,8 @@ textarea:focus-visible {
 .menu-link.active::after,
 .menu-link:hover::after {
   transform: scaleX(1);
-}
+  }
+
 
 
 .hero {
