@@ -163,17 +163,45 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="brand-statement">
-        <span className="eyebrow">A DIFFERENT STATE OF MIND</span>
-        <h2>
-          MOVE DIFFERENT.
-          <br />
-          LIVE IN MOTION.
-        </h2>
-        <a className="main-cta" href="/collection">
-          DISCOVER THE COLLECTION ↗
-        </a>
-      </section>
+     
+<section className="brand-statement">
+  <span className="eyebrow">WHO WE ARE — 20SINMOTION</span>
+
+  <h2>
+    MORE THAN MOVEMENT.
+    <br />
+    IT'S A MINDSET.
+  </h2>
+
+  <div className="brand-description">
+    <p>
+      20sinmotion is an expression of individuality,
+      creativity, and the courage to move differently.
+      Built for those who refuse to be defined by
+      limitations, the brand represents a generation
+      that embraces its own identity and creates its
+      own direction.
+    </p>
+
+    <p>
+      Every piece represents more than what you wear.
+      It's a statement of perspective, a reflection of
+      personal style, and a reminder that progress
+      begins when you dare to move beyond the ordinary.
+    </p>
+  </div>
+
+  <p className="brand-closing">
+    NO RULES TO FOLLOW. NO LIMITS TO ACCEPT.
+    <br />
+    JUST YOUR OWN MOTION.
+  </p>
+
+  <a className="main-cta" href="/collection">
+    DISCOVER THE COLLECTION ↗
+  </a>
+</section>
+      
 
       <footer className="footer" id="contact">
         <h2>20sinmotion.</h2>
