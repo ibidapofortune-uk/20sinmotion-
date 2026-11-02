@@ -590,6 +590,15 @@ function CollectionPage() {
                 required
               />
 
+              <label htmlFor="customer-email">EMAIL ADDRESS</label>
+<input
+  id="customer-email"
+  type="email"
+  autoComplete="email"
+  value={customerEmail}
+  onChange={(event) => setCustomerEmail(event.target.value)}
+  required
+/>
               <label htmlFor="fulfilment">FULFILMENT METHOD</label>
               <select
                 id="fulfilment"
