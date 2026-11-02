@@ -221,6 +221,7 @@ function CollectionPage() {
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
   const [fulfilment, setFulfilment] = useState("delivery");
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [orderNote, setOrderNote] = useState("");
