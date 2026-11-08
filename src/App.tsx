@@ -225,7 +225,8 @@ function CollectionPage() {
   const [fulfilment, setFulfilment] = useState("delivery");
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [orderNote, setOrderNote] = useState("");
-
+const [isPaying, setIsPaying] = useState(false);
+const [paymentError, setPaymentError] = useState("");
   const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
   const total = cart.reduce(
     (sum, item) => sum + TEE_PRICE * item.quantity,
