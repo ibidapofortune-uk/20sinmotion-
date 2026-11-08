@@ -633,9 +633,19 @@ const [paymentError, setPaymentError] = useState("");
                 you pay.
               </p>
 
-              <button type="submit" className="cta checkout-button">
-                SEND ORDER REQUEST ↗
-              </button>
+              {paymentError && (
+  <p className="checkout-note" role="alert">
+    {paymentError}
+  </p>
+)}
+
+<button
+  type="submit"
+  className="cta checkout-button"
+  disabled={isPaying}
+>
+  {isPaying ? "CONNECTING TO PAYSTACK..." : "PAY SECURELY WITH PAYSTACK ↗"}
+</button>
             </form>
           </section>
         )}
