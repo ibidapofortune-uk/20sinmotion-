@@ -555,9 +555,9 @@ const [paymentError, setPaymentError] = useState("");
             <form
               className="checkout-form"
               onSubmit={(event) => {
-                event.preventDefault();
-                continueToWhatsApp();
-              }}
+  event.preventDefault();
+  startPaystackPayment();
+}}
             >
               <label htmlFor="customer-name">FULL NAME</label>
               <input
