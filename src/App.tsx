@@ -272,9 +272,14 @@ const [paymentError, setPaymentError] = useState("");
     );
   }
 
-  function continueToWhatsApp() {
-  if (!customerName.trim() || !customerPhone.trim()) {
-    window.alert("Please enter your name and phone number.");
+  async function startPaystackPayment() {
+  if (cart.length === 0) {
+    window.alert("Your shopping bag is empty.");
+    return;
+  }
+
+  if (!customerName.trim() || !customerPhone.trim() || !customerEmail.trim()) {
+    window.alert("Please complete your customer details.");
     return;
   }
 
@@ -283,71 +288,52 @@ const [paymentError, setPaymentError] = useState("");
     return;
   }
 
-  const orderLines = cart.map((item) => {
-    const product = PRODUCTS.find((p) => p.id === item.productId);
-    return `${product?.name} — Size ${item.size} × ${item.quantity}`;
-  });
+  setIsPaying(true);
+  setPaymentError("");
 
-  const itemsText = orderLines.join("\n");
-  const totalText = formatPrice(total);
-
-  const message = [
-    "Hello 20sinmotion! I'd like to place an order.",
-    "",
-    `Name: ${customerName}`,
-    `Phone: ${customerPhone}`,
-    `Fulfilment: ${
-      fulfilment === "delivery"
-        ? "Delivery"
-        : "Pickup (arrange after ordering)"
-    }`,
-    ...(fulfilment === "delivery"
-      ? [`Delivery address: ${deliveryAddress}`]
-      : []),
-    "",
-    ...orderLines,
-    "",
-    `Items total: ${totalText}`,
-    "Please confirm delivery/pickup arrangements and the final amount.",
-    ...(orderNote.trim() ? [`Note: ${orderNote.trim()}`] : []),
-  ].join("\n");
-
-  const whatsappNumber = "2347031629769";
-
-  // Open WhatsApp immediately so the browser does not block it.
-  window.open(
-    `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
-    "_blank",
-    "noopener,noreferrer",
-  );
-
-  // Send the order details to the email notification backend.
-  void fetch("/api/order-notification", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: customerName.trim(),
-      phone: customerPhone.trim(),
-      fulfilment:
-        fulfilment === "delivery" ? "Delivery" : "Pickup",
-      address: fulfilment === "delivery" ? deliveryAddress.trim() : "",
-      items: itemsText,
-      total: totalText,
-      note: orderNote.trim(),
-    }),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Email notification failed");
-      }
-    })
-    .catch((error) => {
-      console.error("Order email notification failed:", error);
+  try {
+    const response = await fetch("/api/initialize-payment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: customerEmail.trim(),
+        name: customerName.trim(),
+        phone: customerPhone.trim(),
+        fulfilment:
+          fulfilment === "delivery" ? "Delivery" : "Pickup",
+        address:
+          fulfilment === "delivery" ? deliveryAddress.trim() : "",
+        note: orderNote.trim(),
+        items: cart.map((item) => ({
+          productId: item.productId,
+          size: item.size,
+          quantity: item.quantity,
+        })),
+      }),
     });
-  }
 
+    const result = await response.json();
+
+    if (!response.ok || !result.authorizationUrl) {
+      throw new Error(
+        result.error || "Could not start payment. Please try again."
+      );
+    }
+
+    window.location.assign(result.authorizationUrl);
+
+  } catch (error) {
+    setPaymentError(
+      error instanceof Error
+        ? error.message
+        : "Something went wrong. Please try again."
+    );
+
+    setIsPaying(false);
+  }
+  }
   return (
     <main className="site collection-page">
       <Header />
